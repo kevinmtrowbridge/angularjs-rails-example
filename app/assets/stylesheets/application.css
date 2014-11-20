@@ -13,3 +13,15 @@
  *= require_tree .
  *= require_self
  */
+
+li form {
+    display: none;
+}
+
+li.editing form {
+    display: block;
+}
+
+li.editing .view {
+    display: none;
+}

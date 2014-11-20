@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html data-ng-app='JogLogger'>
+  <head>
+    <title>JogLogger</title>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body ng-controller="JogsController">
+
+    <h2>Jogs</h2>
+
+    <form ng-submit="create()">
+      <input type="number" ng-model="newJog.distance_in_miles">
+      <input type="date" ng-model="newJog.start_time" placeholder="yyyy-MM-dd"/>
+      <input type="number" ng-model="newJog.time_in_hours">
+      <input type="submit" value="Add">
+    </form>
+
+    <li ng-repeat="jog in jogs" ng-class="{editing: jog == editedJog}">
+
+      <div class="view">
+        <div ng-dblclick="edit(jog)">
+          {{ jog.start_time }}
+          {{ jog.distance_in_miles }}
+          {{ jog.time_in_hours }}
+        </div>
+        <button ng-click="destroy(jog)">Delete</button>
+      </div>
+
+      <form ng-submit="update(jog)">
+        <input ng-model="jog.start_time">
+        <input ng-model="jog.distance_in_miles">
+        <input ng-model="jog.time_in_hours">
+        <button ng-click="revertEdits(jog)">Cancel</button>
+        <button ng-click="update(jog)">Save</button>
+      </form>
+    </li>
+
+  </body>
+</html>
+
+
