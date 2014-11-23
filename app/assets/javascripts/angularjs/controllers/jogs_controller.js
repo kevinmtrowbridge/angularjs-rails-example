@@ -1,10 +1,30 @@
-app.controller('JogsController', function ($scope, Jog) {
+app.controller('JogsController', function ($scope, $filter, Jog) {
   $scope.jogs = Jog.query();
+
+  $scope.rangeDescriptor = 'all';
+
+  $scope.datetimepickerDropdownOpen = false;
+  $scope.closeDatetimepickerDropdown = function (newDate, oldDate) {
+//    $scope.newJog.start_time = $filter('date')(newDate, 'short');
+    $scope.datetimepickerDropdownOpen = false;
+  };
+
+  $scope.new = function () {
+    var now = new Date();
+    $scope.newJog = {
+      'start_time': now
+    }
+  };
+
+  $scope.newCancel = function (event) {
+    event.preventDefault();
+    $scope.newJog = null;
+  };
 
   $scope.create = function () {
     var jog = Jog.save($scope.newJog);
     $scope.jogs.push(jog);
-    $scope.newJog = {};
+    $scope.newJog = null;
   };
 
   $scope.edit = function (jog) {
@@ -15,8 +35,7 @@ app.controller('JogsController', function ($scope, Jog) {
   };
 
   $scope.update = function (jog) {
-    jog = Jog.update(jog);
-    var originalJogs = $scope.jogs.slice(0);
+    Jog.update(jog);
     $scope.jogs.splice($scope.jogs.indexOf(jog), 1, jog);
     $scope.editedJog = null;
   };

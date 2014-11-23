@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 ruby "2.1.1"
-gem 'debase'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'
@@ -12,12 +11,17 @@ gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
+# CSS libraries
+gem 'twitter-bootstrap-rails'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
 # JavaScript libraries
 gem 'jquery-rails'
+
 gem 'angularjs-rails'
+gem 'angular-ui-bootstrap-rails'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -27,6 +31,7 @@ end
 group :development, :test do
   gem 'annotate'
   gem 'heroku_san'
+  gem 'debase'
 end
 
 # For Heroku

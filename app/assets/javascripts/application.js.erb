@@ -1,0 +1,88 @@
+// This is a manifest file that'll be compiled into application.js, which will include all the files
+// listed below.
+//
+// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
+// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
+//
+// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
+// compiled file.
+//
+// Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
+// about supported directives.
+//
+
+// We need jQuery for odds and ends.
+//= require jquery
+
+//= require moment
+
+//= require twitter/bootstrap
+
+//= require angular
+//= require angular-animate
+//= require angular-resource
+
+//= require angular-ui-bootstrap-tpls
+
+//= require_self
+//= require_tree ./angularjs
+
+var app = angular.module('JogLogger', ['ngResource', 'ui.bootstrap', 'ui.bootstrap.datetimepicker', 'ngAnimate']);
+
+app.directive('numberConverter', function() {
+  return {
+    restrict: 'A',
+    require: 'ngModel',
+    priority: 1,
+    link: function(scope, element, attr, ngModel) {
+
+      function toModel(value) {
+        return "" + value; // convert to string
+      }
+
+      function toView(value) {
+        return parseFloat(value); // convert to number
+      }
+
+      ngModel.$formatters.push(toView);
+      ngModel.$parsers.push(toModel);
+    }
+  };
+});
+
+// Configure angular-resource to work properly with Rails.
+app.config(function ($httpProvider) {
+  var defaults = $httpProvider.defaults;
+  defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
+});
+
+function today() {
+  return (new Date()).setHours(0,0,0,0);
+}
+
+function lastWeek() {
+  var today = new Date();
+  return new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
+}
+
+function lastMonth() {
+  var today = new Date();
+  return new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
+}
+
+app.filter('dateRange', function () {
+  return function (items, field, rangeDescriptor) {
+    return items.filter(function (item) {
+      var date = new Date(item[field]);
+      if (rangeDescriptor === 'today') {
+        return (date.setHours(0,0,0,0) == today());
+      } else if (rangeDescriptor === 'pastWeek') {
+        return (date < Date.now() && date > lastWeek());
+      } else if (rangeDescriptor === 'pastMonth') {
+        return (date < Date.now() && date > lastMonth());
+      } else if (rangeDescriptor === 'all') {
+        return true;
+      }
+    });
+  };
+});
