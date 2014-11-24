@@ -10,10 +10,13 @@ def time_rand from = 0.0, to = Time.now
   Time.at(from + rand * (to.to_f - from.to_f))
 end
 
+@user = User.create :email => 'user@joglogger.com', :password => 'password', :password_confirmation => 'password'
+
 100.times do
   Jog.create({
                :start_time => time_rand(Time.now - 6.months),
                :distance_in_miles => rand * 10,
-               :time_in_hours => rand * 2
+               :time_in_hours => rand * 2,
+               :user => @user
              })
 end
