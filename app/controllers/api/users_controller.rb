@@ -5,8 +5,12 @@ class Api::UsersController < ApiController
   def create
     respond_to do |format|
       format.json {
-        @user = User.create(user_params)
-        render :json => @user.as_json(:except => [:password_digest])
+        @user = User.new(user_params)
+        if @user.save
+          render json: @user, status: :created, location: nil
+        else
+          render json: @user.errors, status: :unprocessable_entity
+        end
       }
     end
   end

@@ -8,7 +8,9 @@ class Api::ApiTokensController < ApiController
       format.json {
         if authenticated_user
           @api_token = ApiToken.create(user: authenticated_user)
-          render :json => {:user_id => authenticated_user.id, :api_token => @api_token.api_token}
+          render :json => {
+            :user_id => authenticated_user.id, :email => authenticated_user.email, :api_token => @api_token.api_token
+          }
         else
           head :unauthorized
         end
@@ -17,11 +19,12 @@ class Api::ApiTokensController < ApiController
   end
 
   def destroy
-    authenticated_user = ApiToken.where(:api_token => @token).first.try(:user)
-    if (authenticated_user)
-      authenticated_user.api_tokens.destroy_all
-    end
-    render :json => {:success => true}
+    # authenticated_user = ApiToken.where(:api_token => @token).first.try(:user)
+    # if (authenticated_user)
+    #   authenticated_user.api_tokens.destroy_all
+    # end
+    # render :json => {:success => true}
+    head :unauthorized
   end
 
   private

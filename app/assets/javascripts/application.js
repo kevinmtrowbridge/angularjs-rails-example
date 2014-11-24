@@ -14,7 +14,7 @@
 // We need jQuery for odds and ends.
 //= require jquery
 
-//= require moment
+//= require vendor/moment
 
 //= require twitter/bootstrap
 
@@ -25,4 +25,4 @@
 //= require angular-ui-bootstrap-tpls
 
 //= require_self
-//= require_tree ./angularjs
+//= require_tree .
