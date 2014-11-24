@@ -33,6 +33,7 @@ GEM
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
     arel (5.0.1.20140414130214)
+    bcrypt (3.1.9)
     builder (3.2.2)
     debase (0.1.0)
       debase-ruby_core_source
@@ -130,6 +131,7 @@ DEPENDENCIES
   angular-ui-bootstrap-rails
   angularjs-rails
   annotate
+  bcrypt
   debase
   heroku_san
   jquery-rails

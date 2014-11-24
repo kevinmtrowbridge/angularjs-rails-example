@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
   namespace :api do
-    resources :jogs, only: [:index, :create, :update, :destroy]
+    resources :users, only: [:create] do
+      resources :jogs, only: [:index, :create, :update, :destroy]
+    end
+    post 'api_tokens', to: 'api_tokens#create'
+    delete 'api_tokens', to: 'api_tokens#delete'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
