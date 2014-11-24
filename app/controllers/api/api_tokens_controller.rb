@@ -8,7 +8,7 @@ class Api::ApiTokensController < ApiController
       format.json {
         if authenticated_user
           @api_token = ApiToken.create(user: authenticated_user)
-          render :json => {:email => @api_token.user.email, :api_token => @api_token.api_token}
+          render :json => {:user_id => authenticated_user.id, :api_token => @api_token.api_token}
         else
           head :unauthorized
         end
