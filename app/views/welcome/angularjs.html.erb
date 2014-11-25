@@ -40,38 +40,40 @@
   <body data-ng-app='JogLogger' ng-controller="ApplicationController">
 
     <div class="navbar navbar-default navbar-static-top">
-      <div class="container">
+      <div class="max-width-940 container-fluid">
+        <div class="row-fluid">
 
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
 
-        <a class="navbar-brand" ui-sref="jogs">
-          <%= image_tag 'logo.png' %>
-        </a>
+          <a class="navbar-brand" ui-sref="jogs">
+            <%= image_tag 'logo.png' %>
+          </a>
 
-        <ul ng-if="currentUser" class="nav navbar-nav navbar-left">
-          <li><a ui-sref="jogs">Jogs</a></li>
-          <li><a ui-sref="report">Report</a></li>
-        </ul>
-
-        <div ng-if="currentUser" class="navbar-collapse collapse navbar-responsive-collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li>
-              <p class="navbar-text"><i class="fa fa-user fa-lg"></i> {{ currentUser.email }}</p>
-            </li>
-            <li>
-              <a style="cursor: pointer;" ng-controller='LoginController' ng-click="logout()">Logout</a>
-            </li>
+          <ul ng-if="currentUser" class="nav navbar-nav navbar-left">
+            <li><a ui-sref="jogs">Jogs</a></li>
+            <li><a ui-sref="report">Report</a></li>
           </ul>
+
+          <div ng-if="currentUser" class="navbar-collapse collapse navbar-responsive-collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <p class="navbar-text"><i class="fa fa-user fa-lg"></i> {{ currentUser.email }}</p>
+              </li>
+              <li>
+                <a style="cursor: pointer;" ng-controller='LoginController' ng-click="logout()">Logout</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="container">
-      <div class="row">
+    <div class="max-width-940 container-fluid">
+      <div class="row-fluid">
 
         <alert ng-repeat="alert in alerts" type="{{alert.type}}">{{alert.message}}</alert>
 
@@ -81,6 +83,5 @@
 
       <footer></footer>
     </div>
-
   </body>
 </html>

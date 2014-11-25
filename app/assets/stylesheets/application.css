@@ -13,3 +13,7 @@
 //= require vendor
  *= require_tree .
  */
+
+.max-width-940 {
+    max-width: 940px;
+}
