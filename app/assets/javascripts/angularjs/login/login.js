@@ -10,7 +10,7 @@ app
     })
   })
 
-  .controller('LoginController', function ($scope, $filter, LoginService, $state) {
+  .controller('LoginController', function ($scope, LoginService, $state) {
 
     $scope.credentials = {}
 

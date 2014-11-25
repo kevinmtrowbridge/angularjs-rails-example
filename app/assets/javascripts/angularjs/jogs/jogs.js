@@ -22,18 +22,12 @@ app
       })
   })
 
-  .controller('JogsController', function ($scope, $filter, JogFactory) {
+  .controller('JogsController', function ($scope, JogFactory) {
     var jogResource = JogFactory.resourceForUser($scope.CurrentUserService.getCurrentUser());
 
     $scope.jogs = jogResource.query();
 
     $scope.rangeDescriptor = 'all';
-
-    $scope.datetimepickerDropdownOpen = false;
-    $scope.closeDatetimepickerDropdown = function (newDate, oldDate) {
-//    $scope.newJog.start_time = $filter('date')(newDate, 'short');
-      $scope.datetimepickerDropdownOpen = false;
-    };
 
     $scope.new = function () {
       var now = new Date();
@@ -42,8 +36,7 @@ app
       }
     };
 
-    $scope.newCancel = function (event) {
-      event.preventDefault();
+    $scope.newCancel = function () {
       $scope.newJog = null;
     };
 
@@ -54,28 +47,24 @@ app
     };
 
     $scope.edit = function (jog) {
-      $scope.editedJog = jog;
-
-      // Clone the original jog to restore it on demand.
-      $scope.originalJog = angular.extend({}, jog);
+      $scope.editedJogMarker = jog;
+      $scope.clonedJog = angular.extend({}, jog);
     };
 
-    $scope.update = function (jog) {
-      jogResource.update(jog);
-      $scope.jogs.splice($scope.jogs.indexOf(jog), 1, jog);
-      $scope.editedJog = null;
+    $scope.editCancel = function () {
+      $scope.editedJogMarker = null;
+      $scope.clonedJog = null;
     };
 
-    $scope.revertEdits = function (jog) {
-      $scope.jogs[$scope.jogs.indexOf(jog)] = $scope.originalJog;
-      $scope.editedJog = null;
-      $scope.originalJog = null;
-      $scope.reverted = true;
+    $scope.update = function () {
+      jogResource.update($scope.clonedJog);
+      $scope.jogs.splice($scope.jogs.indexOf($scope.editedJogMarker), 1, $scope.clonedJog);
+      $scope.editedJogMarker = null;
+      $scope.clonedJog = null;
     };
 
     $scope.destroy = function (jog) {
       jogResource.delete(jog);
-      var originalJogs = $scope.jogs.slice(0);
       $scope.jogs.splice($scope.jogs.indexOf(jog), 1);
     }
   })
@@ -92,6 +81,22 @@ app
     return {
       resourceForUser: resourceForUser
     }
+  })
+
+  .directive('datetimeConverter', function ($filter) {
+    return {
+      restrict: 'A',
+      require: 'ngModel',
+      priority: 1,
+      link: function (scope, element, attr, ngModel) {
+
+        function toView(value) {
+          return $filter('date')(value, 'short'); // reformat date
+        }
+
+        ngModel.$formatters.push(toView);
+      }
+    };
   })
 
   .directive('numberConverter', function () {
@@ -115,13 +120,19 @@ app
     };
   })
 
+  .controller('JogFormController', function ($scope) {
+    $scope.closeDropdown = function() {
+      $scope.dropdownOpen = false;
+    }
+  })
   .directive("jogForm", function () {
     return {
       restrict: 'E',
+      controller: 'JogFormController',
       scope: {
         jog: '=jog'
       },
-      templateUrl: 'angularjs/jogs/_form.html',
+      templateUrl: 'angularjs/jogs/_form.html'
     }
   })
 

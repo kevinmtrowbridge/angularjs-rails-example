@@ -32,26 +32,23 @@
     </div>
 
     <ul class="list-group">
-        <span ng-if="newJog">
-          <li class="list-group-item row">
 
-            <form class="form-inline" ng-submit="create()">
-
-              <jog-form jog="newJog"></jog-form>
-
-              <div class="col-xs-3">
-                <button ng-click="newCancel($event)" class="btn">Cancel</button>
-                <button type="submit" class="btn btn-primary">Create</button>
-              </div>
-            </form>
-
-          </li>
-        </span>
+      <span ng-if="newJog">
+        <li class="list-group-item row">
+          <form class="form-inline" ng-submit="create()">
+            <jog-form jog="newJog"></jog-form>
+            <div class="col-xs-3">
+              <button ng-click="newCancel()" class="btn">Cancel</button>
+              <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+          </form>
+        </li>
+      </span>
 
       <li ng-repeat="jog in jogs | dateRange:'start_time':rangeDescriptor | orderBy: '-start_time'"
           class="list-group-item row">
 
-          <span ng-if="jog != editedJog">
+          <span ng-if="jog != editedJogMarker">
             <div class="col-xs-3">
               {{ jog.start_time | date: 'short' }}
             </div>
@@ -71,18 +68,14 @@
             </div>
           </span>
 
-          <span ng-if="jog == editedJog">
-
-            <form class="form-inline" ng-submit="update(jog)">
-
-              <jog-form jog="jog"></jog-form>
-
+          <span ng-if="jog == editedJogMarker">
+            <form class="form-inline" ng-submit="update()">
+              <jog-form jog="clonedJog"></jog-form>
               <div class="col-xs-3">
-                <button ng-click="revertEdits(jog)" class="btn">Cancel</button>
-                <button ng-click="update(jog)" class="btn btn-primary">Save</button>
+                <button ng-click="editCancel()" class="btn">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
               </div>
             </form>
-
           </span>
 
       </li>

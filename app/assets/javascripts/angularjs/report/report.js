@@ -20,7 +20,7 @@ app
       })
   })
 
-  .controller('ReportController', function ($scope, $filter, JogFactory) {
+  .controller('ReportController', function ($scope, JogFactory) {
     var jogResource = JogFactory.resourceForUser($scope.CurrentUserService.getCurrentUser());
 
     // We can retrieve a collection from the server
