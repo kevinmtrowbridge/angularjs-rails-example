@@ -1,7 +1,7 @@
 <div class="col-xs-3">
   <span class="dropdown" is-open="dropdownOpen">
     <div class="input-group dropdown-toggle">
-      <input type="datetime" datetime-converter class="form-control" data-ng-model="jog.start_time">
+      <input type="datetime" datetime-converter class="form-control" data-ng-model="jog.start_time" required>
       <span class="input-group-addon"><i class="fa fa-calendar fa-lg"></i></span>
     </div>
     <ul class="dropdown-menu">
@@ -12,11 +12,11 @@
 </div>
 
 <div class="col-xs-2">
-  <input class="form-control" type="decimal" step="0.01" min="0" max="999" ng-model="jog.distance_in_miles" number-converter>
+  <input class="form-control" type="decimal" step="0.01" min="0" max="999" ng-model="jog.distance_in_miles" number-converter required>
 </div>
 
 <div class="col-xs-2">
-  <input class="form-control" type="decimal" step="0.01" min="0" max="999" ng-model="jog.time_in_hours" number-converter>
+  <input class="form-control" type="decimal" step="0.01" min="0" max="999" ng-model="jog.time_in_hours" number-converter required>
 </div>
 
 <div class="col-xs-2">

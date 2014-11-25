@@ -13,7 +13,9 @@ app
   .controller('ApplicationController', function ($rootScope, $timeout, CurrentUserService) {
 
     $rootScope.CurrentUserService = CurrentUserService;
-    $rootScope.$watch(function () { return CurrentUserService.getCurrentUser() }, function (newVal, oldVal) {
+    $rootScope.$watch(function () {
+      return CurrentUserService.getCurrentUser()
+    }, function (newVal, oldVal) {
       $rootScope.currentUser = newVal;
     });
 
@@ -24,7 +26,7 @@ app
 
       // fade out quickly
       var index = $rootScope.alerts.length - 1;
-      $timeout(function() {
+      $timeout(function () {
         $rootScope.alerts.splice(index, 1);
       }, 2000);
     };
@@ -35,3 +37,21 @@ app
     var defaults = $httpProvider.defaults;
     defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
   })
+
+  .directive('ngConfirmClick', [
+    function () {
+      return {
+        priority: -1,
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+          element.bind('click', function (e) {
+            var message = attrs.ngConfirmClick;
+            if (message && !confirm(message)) {
+              e.stopImmediatePropagation();
+              e.preventDefault();
+            }
+          });
+        }
+      }
+    }
+  ]);
