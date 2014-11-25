@@ -1,17 +1,25 @@
 app
 
-  .factory('JogFactory', function ($resource) {
+  .config(function ($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('jogs');
 
-    var resourceForUser = function(user) {
-      return $resource('/api/users/:user_id/jogs/:id.json', { id: '@id', user_id: user.user_id }, {
-        update: {
-          method: 'PATCH'
-        }});
-    }
+    $stateProvider
+      .state('jogs', {
+        url: '/jogs',
+        templateUrl: 'angularjs/jogs/_jogs.html',
+        resolve: {
+          auth: ["$q", "CurrentUserService", function ($q, CurrentUserService) {
 
-    return {
-      resourceForUser: resourceForUser
-    }
+            var currentUser = CurrentUserService.getCurrentUser();
+
+            if (currentUser) {
+              return $q.when(currentUser);
+            } else {
+              return $q.reject({ authenticated: false });
+            }
+          }]
+        }
+      })
   })
 
   .controller('JogsController', function ($scope, $filter, JogFactory) {
@@ -72,6 +80,20 @@ app
     }
   })
 
+  .factory('JogFactory', function ($resource) {
+
+    var resourceForUser = function (user) {
+      return $resource('/api/users/:user_id/jogs/:id.json', { id: '@id', user_id: user.user_id }, {
+        update: {
+          method: 'PATCH'
+        }});
+    }
+
+    return {
+      resourceForUser: resourceForUser
+    }
+  })
+
   .directive('numberConverter', function () {
     return {
       restrict: 'A',
@@ -93,26 +115,14 @@ app
     };
   })
 
-  .config(function ($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('jogs');
-
-    $stateProvider
-      .state('jogs', {
-        url: '/jogs',
-        templateUrl: 'angularjs/jogs/_jogs.html',
-        resolve: {
-          auth: ["$q", "CurrentUserService", function ($q, CurrentUserService) {
-
-            var currentUser = CurrentUserService.getCurrentUser();
-
-            if (currentUser) {
-              return $q.when(currentUser);
-            } else {
-              return $q.reject({ authenticated: false });
-            }
-          }]
-        }
-      })
+  .directive("jogForm", function () {
+    return {
+      restrict: 'E',
+      scope: {
+        jog: '=jog'
+      },
+      templateUrl: 'angularjs/jogs/_form.html',
+    }
   })
 
   .filter('dateRange', function () {

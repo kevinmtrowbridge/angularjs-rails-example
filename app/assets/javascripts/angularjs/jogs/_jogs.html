@@ -11,8 +11,8 @@
 
   <div class="panel panel-default col-xs-12">
     <div class="row panel-heading">
-      <div class="col-xs-2">
-        Start
+      <div class="col-xs-3">
+        Start Time
       </div>
       <div class="col-xs-2">
         Distance (Miles)
@@ -23,7 +23,7 @@
       <div class="col-xs-2">
         Average speed (mph)
       </div>
-      <div class="col-xs-2">
+      <div class="col-xs-3">
         <button ng-click="new()" type="button" class="btn btn-success">
           <i class="fa fa-plus-circle fa-lg"></i>
           New
@@ -36,30 +36,13 @@
           <li class="list-group-item row">
 
             <form class="form-inline" ng-submit="create()">
-              <div class="form-group">
-                <span class="dropdown" is-open="datetimepickerDropdownOpen">
-                  <div class="input-group dropdown-toggle">
-                    <input type="datetime" class="form-control" data-ng-model="newJog.start_time">
-                    <span class="input-group-addon"><i class="fa fa-calendar fa-lg"></i></span>
-                  </div>
-                  <ul class="dropdown-menu">
-                    <!-- https://github.com/dalelotts/angular-bootstrap-datetimepicker -->
-                    <datetimepicker data-ng-model="newJog.start_time"
-                                    on-set-time="closeDatetimepickerDropdown(newDate, oldDate)"/>
-                  </ul>
-                </span>
-              </div>
 
-              <div class="form-group">
-                <input class="form-control" type="number" ng-model="newJog.distance_in_miles" placeholder="Distance">
-              </div>
+              <jog-form jog="newJog"></jog-form>
 
-              <div class="form-group">
-                <input class="form-control" type="number" ng-model="newJog.time_in_hours" placeholder="Time">
+              <div class="col-xs-3">
+                <button ng-click="newCancel($event)" class="btn">Cancel</button>
+                <button type="submit" class="btn btn-primary">Create</button>
               </div>
-
-              <button ng-click="newCancel($event)" class="btn">Cancel</button>
-              <button type="submit" class="btn btn-primary">Create</button>
             </form>
 
           </li>
@@ -69,7 +52,7 @@
           class="list-group-item row">
 
           <span ng-if="jog != editedJog">
-            <div class="col-xs-2">
+            <div class="col-xs-3">
               {{ jog.start_time | date: 'short' }}
             </div>
             <div class="col-xs-2">
@@ -81,7 +64,7 @@
             <div class="col-xs-2">
               {{ jog.distance_in_miles / jog.time_in_hours | number : 2 }}
             </div>
-            <div class="col-xs-2">
+            <div class="col-xs-3">
               <button ng-click="edit(jog)" type="button" class="btn"><i class="fa fa-pencil fa-lg"></i></button>
               <button ng-click="destroy(jog)" type="button" class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i>
               </button>
@@ -93,32 +76,13 @@
             <!-- TODO: abstract the new / edit forms into one -->
 
             <form class="form-inline" ng-submit="update(jog)">
-              <div class="form-group">
-                <span class="dropdown" is-open="datetimepickerDropdownOpen">
-                  <div class="input-group dropdown-toggle">
-                    <input type="datetime" class="form-control" data-ng-model="jog.start_time">
-                    <span class="input-group-addon"><i class="fa fa-calendar fa-lg"></i></span>
-                  </div>
-                  <ul class="dropdown-menu">
-                    <!-- https://github.com/dalelotts/angular-bootstrap-datetimepicker -->
-                    <datetimepicker data-ng-model="jog.start_time"
-                                    on-set-time="closeDatetimepickerDropdown(newDate, oldDate)"/>
-                  </ul>
-                </span>
-              </div>
 
-              <div class="form-group">
-                <input class="form-control" number-converter type="number" ng-model="jog.distance_in_miles"
-                       placeholder="Distance">
-              </div>
+              <jog-form jog="jog"></jog-form>
 
-              <div class="form-group">
-                <input class="form-control" number-converter type="number" ng-model="jog.time_in_hours"
-                       placeholder="Time">
+              <div class="col-xs-3">
+                <button ng-click="revertEdits(jog)" class="btn">Cancel</button>
+                <button ng-click="update(jog)" class="btn btn-primary">Save</button>
               </div>
-
-              <button ng-click="revertEdits(jog)" class="btn">Cancel</button>
-              <button ng-click="update(jog)" class="btn btn-primary">Save</button>
             </form>
 
           </span>

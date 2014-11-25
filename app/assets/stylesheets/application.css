@@ -17,3 +17,7 @@
 .max-width-940 {
     max-width: 940px;
 }
+
+input {
+    max-width: 100%;
+}
