@@ -21,6 +21,7 @@
 //= require angular
 //= require angular-animate
 //= require angular-resource
+//= require angular-rails-templates
 
 //= require angular-ui-bootstrap-tpls
 

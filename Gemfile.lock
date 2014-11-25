@@ -27,6 +27,10 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    angular-rails-templates (0.1.3)
+      railties (>= 3.1)
+      sprockets
+      tilt
     angular-ui-bootstrap-rails (0.11.2)
     angularjs-rails (1.3.2)
     annotate (2.6.5)
@@ -128,6 +132,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  angular-rails-templates
   angular-ui-bootstrap-rails
   angularjs-rails
   annotate

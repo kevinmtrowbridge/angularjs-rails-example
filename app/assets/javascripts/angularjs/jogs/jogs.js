@@ -99,7 +99,7 @@ app
     $stateProvider
       .state('jogs', {
         url: '/jogs',
-        templateUrl: 'ng-templates/jogs.html',
+        templateUrl: 'angularjs/jogs/_jogs.html',
         resolve: {
           auth: ["$q", "CurrentUserService", function ($q, CurrentUserService) {
 

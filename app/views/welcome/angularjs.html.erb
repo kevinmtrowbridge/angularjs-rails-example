@@ -48,11 +48,21 @@
           <span class="icon-bar"></span>
         </button>
 
-        <a class="navbar-brand" href="#">JogLogger</a>
+        <a class="navbar-brand" ui-sref="jogs">JogLogger</a>
 
-        <div class="navbar-collapse collapse navbar-responsive-collapse">
+        <ul ng-if="currentUser" class="nav navbar-nav navbar-left">
+          <li><a ui-sref="jogs">Jogs</a></li>
+          <li><a ui-sref="report">Report</a></li>
+        </ul>
+
+        <div ng-if="currentUser" class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li ng-if="currentUser">{{ currentUser.email }}: <a ng-controller='LoginController' ng-click="logout()">Logout</a></li>
+            <li>
+              <p class="navbar-text"><i class="fa fa-user fa-lg"></i> {{ currentUser.email }}</p>
+            </li>
+            <li>
+              <a style="cursor: pointer;" ng-controller='LoginController' ng-click="logout()">Logout</a>
+            </li>
           </ul>
         </div>
       </div>

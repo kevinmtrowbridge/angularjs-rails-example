@@ -3,7 +3,7 @@ app
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider.state('createUser', {
       url: '/create-user',
-      templateUrl: 'ng-templates/create_user_form.html',
+      templateUrl: 'angularjs/users/_form.html',
       controller: 'CreateUsersController'
     })
   })

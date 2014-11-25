@@ -23,6 +23,7 @@ gem 'jquery-rails'
 
 gem 'angularjs-rails'
 gem 'angular-ui-bootstrap-rails'
+gem 'angular-rails-templates'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
