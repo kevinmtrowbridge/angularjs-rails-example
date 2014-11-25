@@ -2,7 +2,6 @@ var app = angular.module('JogLogger',
   ['ngResource', 'ui.bootstrap', 'ui.bootstrap.datetimepicker', 'ui.router', 'templates']);
 
 app
-
   .run(["$rootScope", "$location", "$state", function ($rootScope, $location, $state) {
     $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
       if (error && !error.authenticated) {
