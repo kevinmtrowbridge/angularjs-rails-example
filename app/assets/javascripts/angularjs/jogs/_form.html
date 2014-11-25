@@ -6,17 +6,17 @@
     </div>
     <ul class="dropdown-menu">
       <!-- https://github.com/dalelotts/angular-bootstrap-datetimepicker -->
-      <datetimepicker data-ng-model="jog.start_time" on-set-time="closeDropdown()"/>
+      <datetimepicker datetime-converter data-ng-model="jog.start_time" on-set-time="closeDropdown()"/>
     </ul>
   </span>
 </div>
 
 <div class="col-xs-2">
-  <input class="form-control" type="number" min="0" max="999" ng-model="jog.distance_in_miles" number-converter>
+  <input class="form-control" type="decimal" step="0.01" min="0" max="999" ng-model="jog.distance_in_miles" number-converter>
 </div>
 
 <div class="col-xs-2">
-  <input class="form-control" type="number" min="0" max="999" ng-model="jog.time_in_hours" number-converter>
+  <input class="form-control" type="decimal" step="0.01" min="0" max="999" ng-model="jog.time_in_hours" number-converter>
 </div>
 
 <div class="col-xs-2">

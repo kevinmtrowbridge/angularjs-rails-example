@@ -24,8 +24,7 @@
           Average Speed (mph)
         </div>
       </div>
-      <li ng-repeat="week in weeks | orderBy:'start_week_millisecond'"
-      " class="list-group-item row">
+      <li ng-repeat="week in weeks | orderBy:'-start_week_millisecond'" class="list-group-item row">
       <div class="col-xs-2">
         {{ week.start_week_human }}
       </div>
