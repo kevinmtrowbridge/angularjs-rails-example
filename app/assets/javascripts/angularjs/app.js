@@ -10,22 +10,21 @@ app
     });
   }])
 
-  .controller('ApplicationController', function ($rootScope, CurrentUserService) {
+  .controller('ApplicationController', function ($rootScope, $timeout, CurrentUserService) {
 
-    $rootScope.alerts = [];
     $rootScope.CurrentUserService = CurrentUserService;
-
     $rootScope.$watch(function () { return CurrentUserService.getCurrentUser() }, function (newVal, oldVal) {
       $rootScope.currentUser = newVal;
     });
 
+    $rootScope.alerts = [];
     $rootScope.showAlert = function (message, type) {
       type = typeof type !== 'undefined' ? type : 'success';
       $rootScope.alerts.push({message: message, type: type});
 
       // fade out quickly
       var index = $rootScope.alerts.length - 1;
-      window.setTimeout(function () {
+      $timeout(function() {
         $rootScope.alerts.splice(index, 1);
       }, 2000);
     };
