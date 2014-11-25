@@ -48,7 +48,9 @@
           <span class="icon-bar"></span>
         </button>
 
-        <a class="navbar-brand" ui-sref="jogs">JogLogger</a>
+        <a class="navbar-brand" ui-sref="jogs">
+          <%= image_tag 'logo.png' %>
+        </a>
 
         <ul ng-if="currentUser" class="nav navbar-nav navbar-left">
           <li><a ui-sref="jogs">Jogs</a></li>

@@ -32,13 +32,8 @@ app
 
     $scope.logout = function () {
       var promise = LoginService.logout();
-      // TODO: this is a silly repetition
-      promise.then(
+      promise.finally(
         function (result) {
-          $scope.CurrentUserService.setCurrentUser(null);
-          $scope.showAlert('Logged out successfully, bye!');
-          $state.go('login');
-        }, function (err) {
           $scope.CurrentUserService.setCurrentUser(null);
           $scope.showAlert('Logged out successfully, bye!');
           $state.go('login');

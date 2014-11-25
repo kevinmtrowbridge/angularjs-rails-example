@@ -19,7 +19,6 @@
 //= require twitter/bootstrap
 
 //= require angular
-//= require angular-animate
 //= require angular-resource
 //= require angular-rails-templates
 

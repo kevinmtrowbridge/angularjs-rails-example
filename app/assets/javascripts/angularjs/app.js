@@ -1,5 +1,5 @@
 var app = angular.module('JogLogger',
-  ['ngResource', 'ui.bootstrap', 'ui.bootstrap.datetimepicker', 'ui.router', 'ngAnimate', 'templates']);
+  ['ngResource', 'ui.bootstrap', 'ui.bootstrap.datetimepicker', 'ui.router', 'templates']);
 
 app
 
