@@ -10,38 +10,6 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+//= require vendor
  *= require_tree .
- *= require_self
  */
-
-/*.ng-enter, .ng-leave, .ng-move {*/
-    /*-webkit-transition: 0.25s linear all; *//* Chrome */
-    /*transition: 0.25s linear all;*/
-    /*opacity: 0;*/
-/*}*/
-
-/*.ng-enter {*/
-    /*left:-10px;*/
-    /*opacity: 0;*/
-/*}*/
-
-/*.ng-enter.ng-enter-active {*/
-    /*left:0px;*/
-    /*opacity: 1;*/
-/*}*/
-
-/*.ng-leave {*/
-    /*left:0px;*/
-    /*opacity:1;*/
-/*}*/
-/*.ng-leave.ng-leave-active {*/
-    /*left:-10px;*/
-    /*opacity:0;*/
-/*}*/
-
-/*.ng-move {*/
-    /*opacity:0.5;*/
-/*}*/
-/*.ng-move.ng-move-active {*/
-    /*opacity:1;*/
-/*}*/
