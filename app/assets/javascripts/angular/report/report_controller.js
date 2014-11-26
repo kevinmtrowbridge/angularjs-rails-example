@@ -1,27 +1,10 @@
-app
+(function () {
+  'use strict';
 
-  .config(function ($stateProvider, $urlRouterProvider) {
-    $stateProvider
-      .state('report', {
-        url: '/report',
-        templateUrl: 'angular/report/_report.html',
-        resolve: {
-          auth: ["$q", "CurrentUserService", function ($q, CurrentUserService) {
+  angular.module('app').controller('ReportController', ReportController);
 
-            var currentUser = CurrentUserService.getCurrentUser();
-
-            if (currentUser) {
-              return $q.when(currentUser);
-            } else {
-              return $q.reject({ authenticated: false });
-            }
-          }]
-        }
-      })
-  })
-
-  .controller('ReportController', function ($scope, JogFactory) {
-    var jogResource = JogFactory.resourceForUser($scope.CurrentUserService.getCurrentUser());
+  function ReportController($scope, jogFactory) {
+    var jogResource = jogFactory.resourceForUser($scope.currentUserFactory.getCurrentUser());
 
     // We can retrieve a collection from the server
     jogResource.query(function (jogs) {
@@ -38,7 +21,7 @@ app
 
       joggingWeeks = _.map(joggingWeeks, function (jogsArray, key) {
 
-        week = {}
+        var week = {};
 
         week.start_week_millisecond = key;
         week.start_week_human = moment.unix(key).format('YYYY-M-D');
@@ -58,4 +41,6 @@ app
 
       $scope.weeks = joggingWeeks;
     });
-  });
+  }
+
+})();
