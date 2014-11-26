@@ -4,7 +4,7 @@ app
     $stateProvider
       .state('report', {
         url: '/report',
-        templateUrl: 'angularjs/report/_report.html',
+        templateUrl: 'angular/report/_report.html',
         resolve: {
           auth: ["$q", "CurrentUserService", function ($q, CurrentUserService) {
 
@@ -26,8 +26,7 @@ app
     // We can retrieve a collection from the server
     jogResource.query(function (jogs) {
 
-      var st = Date.now();
-
+      // TODO: move this out of the controller
       jogs = _.map(jogs, function (jog) {
         jog.start_week_millisecond = moment(jog.start_time).startOf('week').format('X');
         return jog;
@@ -56,8 +55,6 @@ app
 
         return week;
       });
-
-      var et = Date.now();
 
       $scope.weeks = joggingWeeks;
     });

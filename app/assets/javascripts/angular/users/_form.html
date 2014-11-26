@@ -15,7 +15,7 @@
           <div class="controls">
             <input id="email" name="email" type="email" ng-model="newUser.email" placeholder="Email" required/>
             <div class="help-block" ng-show="form.email.$invalid && form.email.$dirty"
-                 ng-messages="form.email.$error" ng-messages-include="angularjs/common/_ng-messages.html"></div>
+                 ng-messages="form.email.$error" ng-messages-include="angular/common/_ng-messages.html"></div>
           </div>
         </div>
 
@@ -25,7 +25,7 @@
             <input id="password" name="password" type="password" minlength='6' ng-model="newUser.password" placeholder="Password"
                    required/>
             <div class="help-block" ng-show="form.password.$invalid && form.password.$dirty"
-                 ng-messages="form.password.$error" ng-messages-include="angularjs/common/_ng-messages.html"></div>
+                 ng-messages="form.password.$error" ng-messages-include="angular/common/_ng-messages.html"></div>
           </div>
         </div>
 
@@ -36,7 +36,7 @@
                    ng-model="newUser.password_confirmation" compare-to="newUser.password"
                    placeholder="Password confirmation" required/>
             <div class="help-block" ng-show="form.password_confirmation.$invalid && form.password_confirmation.$dirty"
-                 ng-messages="form.password_confirmation.$error" ng-messages-include="angularjs/common/_ng-messages.html"></div>
+                 ng-messages="form.password_confirmation.$error" ng-messages-include="angular/common/_ng-messages.html"></div>
           </div>
         </div>
 

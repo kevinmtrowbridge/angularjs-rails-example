@@ -6,7 +6,7 @@ app
     $stateProvider
       .state('jogs', {
         url: '/jogs',
-        templateUrl: 'angularjs/jogs/_jogs.html',
+        templateUrl: 'angular/jogs/_jogs.html',
         resolve: {
           auth: ["$q", "CurrentUserService", function ($q, CurrentUserService) {
 
@@ -137,7 +137,7 @@ app
       scope: {
         jog: '=jog'
       },
-      templateUrl: 'angularjs/jogs/_form.html'
+      templateUrl: 'angular/jogs/_form.html'
     }
   })
 

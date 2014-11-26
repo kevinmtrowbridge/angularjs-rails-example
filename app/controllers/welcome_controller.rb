@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   layout nil
 
-  def angularjs
+  def angular
   end
 end
