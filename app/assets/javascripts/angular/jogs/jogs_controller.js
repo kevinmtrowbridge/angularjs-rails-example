@@ -8,45 +8,51 @@
 
     var jogResource = jogService.resourceForUser($scope.currentUserService.getCurrentUser());
 
+    vm.createJog = createJog;
+    vm.destroyJog = destroyJog;
+    vm.editCancel = editCancel;
+    vm.editJog = editJog;
     vm.jogs = jogResource.query();
-
+    vm.newCancel = newCancel;
+    vm.newJog = newJog;
     vm.rangeDescriptor = 'all';
+    vm.updateJog = updateJog;
 
-    vm.new = function () {
+    function newJog() {
       var now = new Date();
       vm.newJog = {
         'start_time': now
       }
     };
 
-    vm.newCancel = function () {
+    function newCancel() {
       vm.newJog = null;
     };
 
-    vm.create = function () {
+    function createJog() {
       var jog = jogResource.save(vm.newJog);
       vm.jogs.push(jog);
       vm.newJog = null;
     };
 
-    vm.edit = function (jog) {
+    function editJog(jog) {
       vm.editedJogMarker = jog;
       vm.clonedJog = angular.extend({}, jog);
     };
 
-    vm.editCancel = function () {
+    function editCancel() {
       vm.editedJogMarker = null;
       vm.clonedJog = null;
     };
 
-    vm.update = function () {
+    function updateJog() {
       jogResource.update(vm.clonedJog);
       vm.jogs.splice(vm.jogs.indexOf(vm.editedJogMarker), 1, vm.clonedJog);
       vm.editedJogMarker = null;
       vm.clonedJog = null;
     };
 
-    vm.destroy = function (jog) {
+    function destroyJog(jog) {
       jogResource.delete(jog);
       vm.jogs.splice(vm.jogs.indexOf(jog), 1);
     }
