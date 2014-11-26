@@ -4,6 +4,8 @@
   angular.module('app.report').controller('ReportController', ReportController);
 
   function ReportController($scope, jogFactory) {
+    var vm = this;
+
     var jogResource = jogFactory.resourceForUser($scope.currentUserFactory.getCurrentUser());
 
     // We can retrieve a collection from the server
@@ -39,7 +41,7 @@
         return week;
       });
 
-      $scope.weeks = joggingWeeks;
+      vm.weeks = joggingWeeks;
     });
   }
 

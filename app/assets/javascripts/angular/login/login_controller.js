@@ -6,11 +6,12 @@
   LoginController.$inject = ['$scope', 'loginFactory', '$state'];
 
   function LoginController($scope, loginFactory, $state) {
+    var vm = this;
 
-    $scope.credentials = {};
+    vm.credentials = {};
 
-    $scope.login = function () {
-      var promise = loginFactory.login($scope.credentials.email, $scope.credentials.password);
+    vm.login = function () {
+      var promise = loginFactory.login(vm.credentials.email, vm.credentials.password);
 
       promise.then(
         function (result) {
@@ -25,7 +26,7 @@
         });
     };
 
-    $scope.logout = function () {
+    vm.logout = function () {
       var promise = loginFactory.logout();
       promise.finally(
         function (result) {

@@ -6,8 +6,7 @@
   function config($stateProvider, $urlRouterProvider) {
     $stateProvider.state('login', {
       url: '/login',
-      templateUrl: 'angular/login/_form.html',
-      controller: 'LoginController'
+      templateUrl: 'angular/login/_form.html'
     })
   }
 

@@ -4,12 +4,13 @@
   angular.module('app.users').controller('CreateUsersController', CreateUsersController);
 
   function CreateUsersController($scope, userFactory, $state) {
+    var vm = this;
 
-    $scope.newUser = {};
+    vm.newUser = {};
 
-    $scope.create = function () {
+    vm.create = function () {
 
-      var promise = userFactory.create($scope.newUser.email, $scope.newUser.password, $scope.newUser.password_confirmation);
+      var promise = userFactory.create(vm.newUser.email, vm.newUser.password, vm.newUser.password_confirmation);
 
       promise.then(
         function (result) {
@@ -21,6 +22,7 @@
             _.each(error.data, function (errors, key) {
               _.each(errors, function (e) {
                 $scope.form[key].$dirty = true;
+                // TODO: there's a bug here, this invalidity is not cleared when changing the form ...
                 $scope.form[key].$setValidity(e.replace(/ /g, "_"), false);
               });
             });
@@ -29,11 +31,6 @@
             $scope.showAlert('Error, please try again.', 'danger');
           }
         });
-    };
-
-    $scope.error = function (name) {
-      var f = $scope.form[name];
-      return f.$invalid && f.$dirty ? "has-error" : "";
     };
   }
 

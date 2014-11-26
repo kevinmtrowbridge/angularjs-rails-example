@@ -4,49 +4,51 @@
   angular.module('app.jogs').controller('JogsController', JogsController);
 
   function JogsController($scope, jogFactory) {
+    var vm = this;
+
     var jogResource = jogFactory.resourceForUser($scope.currentUserFactory.getCurrentUser());
 
-    $scope.jogs = jogResource.query();
+    vm.jogs = jogResource.query();
 
-    $scope.rangeDescriptor = 'all';
+    vm.rangeDescriptor = 'all';
 
-    $scope.new = function () {
+    vm.new = function () {
       var now = new Date();
-      $scope.newJog = {
+      vm.newJog = {
         'start_time': now
       }
     };
 
-    $scope.newCancel = function () {
-      $scope.newJog = null;
+    vm.newCancel = function () {
+      vm.newJog = null;
     };
 
-    $scope.create = function () {
-      var jog = jogResource.save($scope.newJog);
-      $scope.jogs.push(jog);
-      $scope.newJog = null;
+    vm.create = function () {
+      var jog = jogResource.save(vm.newJog);
+      vm.jogs.push(jog);
+      vm.newJog = null;
     };
 
-    $scope.edit = function (jog) {
-      $scope.editedJogMarker = jog;
-      $scope.clonedJog = angular.extend({}, jog);
+    vm.edit = function (jog) {
+      vm.editedJogMarker = jog;
+      vm.clonedJog = angular.extend({}, jog);
     };
 
-    $scope.editCancel = function () {
-      $scope.editedJogMarker = null;
-      $scope.clonedJog = null;
+    vm.editCancel = function () {
+      vm.editedJogMarker = null;
+      vm.clonedJog = null;
     };
 
-    $scope.update = function () {
-      jogResource.update($scope.clonedJog);
-      $scope.jogs.splice($scope.jogs.indexOf($scope.editedJogMarker), 1, $scope.clonedJog);
-      $scope.editedJogMarker = null;
-      $scope.clonedJog = null;
+    vm.update = function () {
+      jogResource.update(vm.clonedJog);
+      vm.jogs.splice(vm.jogs.indexOf(vm.editedJogMarker), 1, vm.clonedJog);
+      vm.editedJogMarker = null;
+      vm.clonedJog = null;
     };
 
-    $scope.destroy = function (jog) {
+    vm.destroy = function (jog) {
       jogResource.delete(jog);
-      $scope.jogs.splice($scope.jogs.indexOf(jog), 1);
+      vm.jogs.splice(vm.jogs.indexOf(jog), 1);
     }
   }
 

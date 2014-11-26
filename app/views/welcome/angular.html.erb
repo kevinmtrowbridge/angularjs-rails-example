@@ -64,7 +64,7 @@
                 <p class="navbar-text"><i class="fa fa-user fa-lg"></i> {{ currentUser.email }}</p>
               </li>
               <li>
-                <a style="cursor: pointer;" ng-controller='LoginController' ng-click="logout()">Logout</a>
+                <a style="cursor: pointer;" ng-controller='LoginController as lc' ng-click="lc.logout()">Logout</a>
               </li>
             </ul>
           </div>

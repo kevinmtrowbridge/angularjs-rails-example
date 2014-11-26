@@ -1,4 +1,4 @@
-<div class="row col-xs-12 col-md-6">
+<div ng-controller='LoginController as vm' class="row col-xs-12 col-md-6">
 
   <div class="panel panel-default">
 
@@ -8,31 +8,10 @@
 
     <div class="panel-body">
 
-      <form name="form" ng-submit="login()">
-
-        <div class="form-group" ng-class="error('email')">
-          <label for="email">Email</label>
-
-          <div class="controls">
-            <input id="email" name="email" type="text" ng-model="credentials.email" placeholder="Email" required/>
-        <span class="help-block" ng-show="form.email.$invalid && form.email.$dirty">
-          Email is required
-        </span>
-          </div>
-        </div>
-
-        <div class="form-group" ng-class="error('password')">
-          <label for="password">Password</label>
-
-          <div class="controls">
-            <input id="password" name="password" type="password" ng-model="credentials.password" placeholder="Password" required/>
-        <span class="help-block" ng-show="form.password.$invalid && form.password.$dirty">
-          Password is required
-        </span>
-          </div>
-        </div>
-
-        <button class="btn btn-primary" type="submit">Login</button>
+      <form name="form" ng-submit="vm.login()">
+        <email-form form="form" model="vm.credentials"></email-form>
+        <password-form form="form" model="vm.credentials" include-confirmation="false"></password-form>
+        <button ng-disabled="form.$invalid" class="btn btn-primary" type="submit">Login</button>
         <a ui-sref="createUser">Or create a user, if you do not have one already.</a>
       </form>
 

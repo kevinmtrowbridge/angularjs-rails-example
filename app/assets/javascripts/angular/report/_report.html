@@ -1,4 +1,4 @@
-<div ng-controller="ReportController">
+<div ng-controller="ReportController as vm">
 
   <h3>Weekly Reports</h3>
 
@@ -24,7 +24,7 @@
           Average Speed (mph)
         </div>
       </div>
-      <li ng-repeat="week in weeks | orderBy:'-start_week_millisecond'" class="list-group-item row">
+      <li ng-repeat="week in vm.weeks | orderBy:'-start_week_millisecond'" class="list-group-item row">
       <div class="col-xs-3">
         {{ week.start_week_human }}
       </div>
