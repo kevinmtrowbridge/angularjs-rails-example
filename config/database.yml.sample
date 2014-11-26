@@ -1,0 +1,9 @@
+development: &development
+  # POSTGRESQL
+  adapter: postgresql
+  database: jog_logger_development
+  host: localhost
+
+test: &TEST
+  <<: *development
+  database: jog_logger_test
