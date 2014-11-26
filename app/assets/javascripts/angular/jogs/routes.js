@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('app').config(config);
+  angular.module('app.jogs').config(config);
 
   function config($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('jogs');

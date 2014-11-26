@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('app').run(datetimeConverter);
+  angular.module('app').directive('datetimeConverter', datetimeConverter);
 
   function datetimeConverter($filter) {
     return {

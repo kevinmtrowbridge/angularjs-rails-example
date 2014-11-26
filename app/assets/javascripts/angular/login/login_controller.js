@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('app').controller('LoginController', LoginController);
+  angular.module('app.login').controller('LoginController', LoginController);
 
   LoginController.$inject = ['$scope', 'loginFactory', '$state'];
 
@@ -21,8 +21,8 @@
           $state.go('jogs');
 
         }, function (err) {
-        $scope.showAlert('Incorrect email or password.', 'danger');
-      });
+          $scope.showAlert('Incorrect email or password.', 'danger');
+        });
     };
 
     $scope.logout = function () {

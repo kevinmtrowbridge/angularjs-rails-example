@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('app').config(config);
+  angular.module('app.users').config(config);
 
   function config($stateProvider, $urlRouterProvider) {
     $stateProvider.state('createUser', {

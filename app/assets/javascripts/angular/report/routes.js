@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('app').config(config);
+  angular.module('app.report').config(config);
 
   function config($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -9,6 +9,7 @@
         url: '/report',
         templateUrl: 'angular/report/_report.html',
         resolve: {
+          // TODO: this is an exact copy of what's in jogs/routes.js
           auth: ["$q", "currentUserFactory", function ($q, currentUserFactory) {
 
             var currentUser = currentUserFactory.getCurrentUser();

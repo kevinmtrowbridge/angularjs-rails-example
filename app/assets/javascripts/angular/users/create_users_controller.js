@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('app').controller('CreateUsersController', CreateUsersController);
+  angular.module('app.users').controller('CreateUsersController', CreateUsersController);
 
   function CreateUsersController($scope, userFactory, $state) {
 
@@ -25,7 +25,7 @@
               });
             });
           } catch (e) {
-            // If something goes wrong with the server.
+            // If something's wrong with the server.
             $scope.showAlert('Error, please try again.', 'danger');
           }
         });
@@ -35,7 +35,6 @@
       var f = $scope.form[name];
       return f.$invalid && f.$dirty ? "has-error" : "";
     };
-
   }
 
 })();

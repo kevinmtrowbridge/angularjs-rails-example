@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('app').controller('JogsController', JogsController);
+  angular.module('app.jogs').controller('JogsController', JogsController);
 
   function JogsController($scope, jogFactory) {
     var jogResource = jogFactory.resourceForUser($scope.currentUserFactory.getCurrentUser());

@@ -1,9 +1,0 @@
-angular.module('app',
-  [
-    'ngResource',
-    'ui.bootstrap',
-    'ui.bootstrap.datetimepicker',
-    'ui.router',
-    'templates',
-    'ngMessages'
-  ]);

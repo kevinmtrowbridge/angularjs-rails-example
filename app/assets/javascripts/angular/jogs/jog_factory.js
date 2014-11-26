@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('app').factory('jogFactory', jogFactory);
+  angular.module('app.jogs').factory('jogFactory', jogFactory);
 
   function jogFactory($resource) {
 
