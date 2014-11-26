@@ -1,5 +1,5 @@
 var app = angular.module('JogLogger',
-  ['ngResource', 'ui.bootstrap', 'ui.bootstrap.datetimepicker', 'ui.router', 'templates']);
+  ['ngResource', 'ui.bootstrap', 'ui.bootstrap.datetimepicker', 'ui.router', 'templates', 'ngMessages']);
 
 app
   .run(["$rootScope", "$location", "$state", function ($rootScope, $location, $state) {
@@ -30,6 +30,7 @@ app
         $rootScope.alerts.splice(index, 1);
       }, 2000);
     };
+
   })
 
   .config(function ($httpProvider) {
@@ -38,20 +39,21 @@ app
     defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
   })
 
-  .directive('ngConfirmClick', [
-    function () {
-      return {
-        priority: -1,
-        restrict: 'A',
-        link: function (scope, element, attrs) {
-          element.bind('click', function (e) {
-            var message = attrs.ngConfirmClick;
-            if (message && !confirm(message)) {
-              e.stopImmediatePropagation();
-              e.preventDefault();
-            }
-          });
-        }
+  .directive("compareTo", function () {
+    return {
+      require: "ngModel",
+      scope: {
+        otherModelValue: "=compareTo"
+      },
+      link: function (scope, element, attributes, ngModel) {
+
+        ngModel.$validators.compareTo = function (modelValue) {
+          return modelValue == scope.otherModelValue;
+        };
+
+        scope.$watch("otherModelValue", function () {
+          ngModel.$validate();
+        });
       }
-    }
-  ]);
+    };
+  })

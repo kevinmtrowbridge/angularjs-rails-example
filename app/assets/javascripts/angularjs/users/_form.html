@@ -8,43 +8,39 @@
 
     <div class="panel-body">
 
-      <form name="form" ng-submit="create()">
+      <form name="form" ng-submit="form.$valid && create()">
 
         <div class="form-group" ng-class="error('email')">
-          <label for="email">Email</label>
-
+          <label class="form-label" for="email">Email</label>
           <div class="controls">
-            <input id="email" name="email" type="text" ng-model="newUser.email" placeholder="Email" required/>
-            <span class="help-block" ng-show="form.email.$invalid && form.email.$dirty">
-              Email is required
-            </span>
+            <input id="email" name="email" type="email" ng-model="newUser.email" placeholder="Email" required/>
+            <div class="help-block" ng-show="form.email.$invalid && form.email.$dirty"
+                 ng-messages="form.email.$error" ng-messages-include="angularjs/common/_ng-messages.html"></div>
           </div>
         </div>
 
         <div class="form-group" ng-class="error('password')">
-          <label for="password">Password</label>
-
+          <label class="form-label" for="password">Password</label>
           <div class="controls">
-            <input id="password" name="password" type="password" ng-model="newUser.password" placeholder="Password" required/>
-            <span class="help-block" ng-show="form.password.$invalid && form.password.$dirty">
-              Password is required
-            </span>
+            <input id="password" name="password" type="password" minlength='6' ng-model="newUser.password" placeholder="Password"
+                   required/>
+            <div class="help-block" ng-show="form.password.$invalid && form.password.$dirty"
+                 ng-messages="form.password.$error" ng-messages-include="angularjs/common/_ng-messages.html"></div>
           </div>
         </div>
 
         <div class="form-group" ng-class="error('password_confirmation')">
-          <label for="password_confirmation">Password confirmation</label>
-
+          <label class="form-label" for="password_confirmation">Password confirmation</label>
           <div class="controls">
             <input id="password_confirmation" name="password_confirmation" type="password"
-                   ng-model="newUser.password_confirmation" placeholder="Password confirmation" required/>
-            <span class="help-block" ng-show="form.password_confirmation.$invalid && form.password_confirmation.$dirty">
-              Password confirmation is required
-            </span>
+                   ng-model="newUser.password_confirmation" compare-to="newUser.password"
+                   placeholder="Password confirmation" required/>
+            <div class="help-block" ng-show="form.password_confirmation.$invalid && form.password_confirmation.$dirty"
+                 ng-messages="form.password_confirmation.$error" ng-messages-include="angularjs/common/_ng-messages.html"></div>
           </div>
         </div>
 
-        <button class="btn btn-primary" type="submit">Create user</button>
+        <button ng-disabled="form.$invalid" class="btn btn-primary" type="submit">Create user</button>
         <a ui-sref="login">Or login, if you have already created a user.</a>
       </form>
 

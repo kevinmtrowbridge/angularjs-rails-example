@@ -12,11 +12,6 @@ app
 
     $scope.newUser = {};
 
-    $scope.error = function(name) {
-      var s = $scope.form[name];
-      return s.$invalid && s.$dirty ? "error" : "";
-    };
-
     $scope.create = function () {
 
       var promise = UsersService.create($scope.newUser.email, $scope.newUser.password, $scope.newUser.password_confirmation);
@@ -26,18 +21,26 @@ app
           $scope.showAlert('User created, now login.');
           $state.go('login');
 
-        }, function (err) {
-
-          $scope.showAlert('Error, please try again: ' + err.statusText, 'danger');
-
-          _.each(err.data, function (errors, key) {
-            _.each(errors, function (e) {
-              $scope.form[key].$dirty = true;
-              $scope.form[key].$setValidity(e, false);
+        }, function (error) {
+          try {
+            _.each(error.data, function (errors, key) {
+              _.each(errors, function (e) {
+                $scope.form[key].$dirty = true;
+                $scope.form[key].$setValidity(e.replace(/ /g, "_"), false);
+              });
             });
-          });
+          } catch (e) {
+            // If something goes wrong with the server.
+            $scope.showAlert('Error, please try again.', 'danger');
+          }
         });
     }
+
+    $scope.error = function (name) {
+      var f = $scope.form[name];
+      return f.$invalid && f.$dirty ? "has-error" : "";
+    };
+
   }])
 
   .factory('UsersService', ['$http', '$q', '$state', function ($http, $q, $state) {
@@ -64,4 +67,4 @@ app
     return {
       create: create
     };
-  }]);
+  }])
