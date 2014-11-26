@@ -12,6 +12,9 @@
       resolve: {
         auth: ["$q", "currentUserService", function ($q, currentUserService) {
 
+          // TODO: this is an exact copy of what's in reports/routes.js
+          // Look here for ideas? http://www.sitepoint.com/implementing-authentication-angular-applications/
+
           var currentUser = currentUserService.getCurrentUser();
 
           if (currentUser) {
