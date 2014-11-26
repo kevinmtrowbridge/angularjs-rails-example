@@ -1,9 +1,9 @@
 (function () {
   'use strict';
 
-  angular.module('app.jogs').factory('jogFactory', jogFactory);
+  angular.module('app.jogs').factory('jogService', jogService);
 
-  function jogFactory($resource) {
+  function jogService($resource) {
 
     var resourceForUser = function (user) {
       return $resource('/api/users/:user_id/jogs/:id.json', { id: '@id', user_id: user.user_id }, {

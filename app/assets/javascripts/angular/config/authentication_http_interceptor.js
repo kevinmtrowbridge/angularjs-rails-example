@@ -5,10 +5,10 @@
     .factory('authenticationHttpInterceptor', interceptor)
     .config(config);
 
-  function interceptor(currentUserFactory) {
+  function interceptor(currentUserService) {
     return {
       request: function (config) {
-        var currentUser = currentUserFactory.getCurrentUser();
+        var currentUser = currentUserService.getCurrentUser();
         if (currentUser) {
           config.headers.Authorization = 'Token token="' + currentUser.api_token + '"';
         }

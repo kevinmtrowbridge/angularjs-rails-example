@@ -3,14 +3,14 @@
 
   angular.module('app.users').controller('CreateUsersController', CreateUsersController);
 
-  function CreateUsersController($scope, userFactory, $state) {
+  function CreateUsersController($scope, usersService, $state) {
     var vm = this;
 
     vm.newUser = {};
 
     vm.create = function () {
 
-      var promise = userFactory.create(vm.newUser.email, vm.newUser.password, vm.newUser.password_confirmation);
+      var promise = usersService.create(vm.newUser.email, vm.newUser.password, vm.newUser.password_confirmation);
 
       promise.then(
         function (result) {

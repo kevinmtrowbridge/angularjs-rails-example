@@ -3,10 +3,10 @@
 
   angular.module('app.report').controller('ReportController', ReportController);
 
-  function ReportController($scope, jogFactory) {
+  function ReportController($scope, jogService) {
     var vm = this;
 
-    var jogResource = jogFactory.resourceForUser($scope.currentUserFactory.getCurrentUser());
+    var jogResource = jogService.resourceForUser($scope.currentUserService.getCurrentUser());
 
     // We can retrieve a collection from the server
     jogResource.query(function (jogs) {

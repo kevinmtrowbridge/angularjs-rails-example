@@ -1,9 +1,9 @@
 (function () {
   'use strict';
 
-  angular.module('app.users').factory('userFactory', userFactory);
+  angular.module('app.users').factory('usersService', usersService);
 
-  function userFactory($http, $q) {
+  function usersService($http, $q) {
 
     function create(email, password, password_confirmation) {
 

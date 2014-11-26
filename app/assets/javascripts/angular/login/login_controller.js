@@ -3,20 +3,20 @@
 
   angular.module('app.login').controller('LoginController', LoginController);
 
-  LoginController.$inject = ['$scope', 'loginFactory', '$state'];
+  LoginController.$inject = ['$scope', 'loginService', '$state'];
 
-  function LoginController($scope, loginFactory, $state) {
+  function LoginController($scope, loginService, $state) {
     var vm = this;
 
     vm.credentials = {};
 
     vm.login = function () {
-      var promise = loginFactory.login(vm.credentials.email, vm.credentials.password);
+      var promise = loginService.login(vm.credentials.email, vm.credentials.password);
 
       promise.then(
         function (result) {
 
-          $scope.currentUserFactory.setCurrentUser(result.data);
+          $scope.currentUserService.setCurrentUser(result.data);
 
           $scope.showAlert('Logged in successfully.');
           $state.go('jogs');
@@ -27,10 +27,10 @@
     };
 
     vm.logout = function () {
-      var promise = loginFactory.logout();
+      var promise = loginService.logout();
       promise.finally(
         function (result) {
-          $scope.currentUserFactory.setCurrentUser(null);
+          $scope.currentUserService.setCurrentUser(null);
           $scope.showAlert('Logged out successfully, bye!');
           $state.go('login');
         });

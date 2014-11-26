@@ -10,9 +10,9 @@
       url: '/jogs',
       templateUrl: 'angular/jogs/_jogs.html',
       resolve: {
-        auth: ["$q", "currentUserFactory", function ($q, currentUserFactory) {
+        auth: ["$q", "currentUserService", function ($q, currentUserService) {
 
-          var currentUser = currentUserFactory.getCurrentUser();
+          var currentUser = currentUserService.getCurrentUser();
 
           if (currentUser) {
             return $q.when(currentUser);

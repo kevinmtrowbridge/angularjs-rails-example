@@ -3,10 +3,10 @@
 
   angular.module('app.jogs').controller('JogsController', JogsController);
 
-  function JogsController($scope, jogFactory) {
+  function JogsController($scope, jogService) {
     var vm = this;
 
-    var jogResource = jogFactory.resourceForUser($scope.currentUserFactory.getCurrentUser());
+    var jogResource = jogService.resourceForUser($scope.currentUserService.getCurrentUser());
 
     vm.jogs = jogResource.query();
 

@@ -1,9 +1,9 @@
 (function () {
   'use strict';
 
-  angular.module('app.login').factory('loginFactory', loginFactory);
+  angular.module('app.login').factory('loginService', loginService);
 
-  function loginFactory($http, $q) {
+  function loginService($http, $q) {
 
     function login(email, password) {
 

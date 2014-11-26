@@ -10,9 +10,9 @@
         templateUrl: 'angular/report/_report.html',
         resolve: {
           // TODO: this is an exact copy of what's in jogs/routes.js
-          auth: ["$q", "currentUserFactory", function ($q, currentUserFactory) {
+          auth: ["$q", "currentUserService", function ($q, currentUserService) {
 
-            var currentUser = currentUserFactory.getCurrentUser();
+            var currentUser = currentUserService.getCurrentUser();
 
             if (currentUser) {
               return $q.when(currentUser);

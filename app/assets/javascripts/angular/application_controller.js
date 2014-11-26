@@ -3,11 +3,11 @@
 
   angular.module('app').controller('ApplicationController', ApplicationController);
 
-  function ApplicationController($rootScope, $timeout, currentUserFactory) {
+  function ApplicationController($rootScope, $timeout, currentUserService) {
 
-    $rootScope.currentUserFactory = currentUserFactory;
+    $rootScope.currentUserService = currentUserService;
     $rootScope.$watch(function () {
-      return currentUserFactory.getCurrentUser()
+      return currentUserService.getCurrentUser()
     }, function (newVal, oldVal) {
       $rootScope.currentUser = newVal;
     });

@@ -1,9 +1,9 @@
 (function () {
   'use strict';
 
-  angular.module('app').factory('currentUserFactory', currentUserFactory);
+  angular.module('app').factory('currentUserService', currentUserService);
 
-  function currentUserFactory($window) {
+  function currentUserService($window) {
     var currentUser = null;
 
     function getCurrentUser() {
