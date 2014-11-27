@@ -1,5 +1,3 @@
-== README
-
 # Example Rails + Angular Js (ngResource) + Boostrap app.
 
 November 26th, 2014
