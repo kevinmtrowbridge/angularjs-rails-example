@@ -7,6 +7,8 @@ November 26th, 2014
 I created this while exploring a quick way to build a client-side app in AngularJs, while using Rails as a
 RESTful API backend.
 
+**Access demo here: https://jog-logger-kevinmtrowbridge.herokuapp.com/** (patience while idling Heroku app boots)
+
 I consulted many other sample apps while creating this one, so in the spirit of open source
 (and also because GitHub is a great place to store things like this), I share with the internet.
 
